@@ -25,21 +25,34 @@ function App() {
 
   return (
     <>
-
+    
       {personagens && (
         <>
         <div className='container'>
-                <div className='titulo'>
-            <h1>Lista De Personagens</h1>
+               
+                <div>
+                
+          <h1>Lista de Personagens</h1>
+          <input type="text" name="input" id="" /><button>Pesquisar</button> 
+
+          <select name="" id="">
+            <option value="">Todos</option>
+            <option value="Alive">Vivo</option>
+            <option value="Dead">Morto</option>
+            <option value="unknown">Desconhecido</option>
+          </select>
+        
             </div>
             {personagens.results && personagens.results.map((busca) => (
 
-                <div className='pessoas' >
-                  <Link to={`/Infos/${busca.id}`} key={busca.id}></Link>
+               
+                  <Link to={`/Infos/${busca.id}`} key={busca.id}>
+                  <div className='pessoas' >
                    <img className='img' src={busca.image && busca.image} />
                 <h2 className='nome'>{busca.name}</h2>
                
                 </div>
+                </Link>
             ))}
           </div>
         </>

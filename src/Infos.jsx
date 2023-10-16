@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './App.css'
 
 
 function Infos() {
 
-    const [infos, setInfos] = useState();
+    const [personagens, setPersonagens] = useState();
     const { id } = useParams();
 
     useEffect(() => {
@@ -14,7 +14,7 @@ function Infos() {
             const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
             const data = await response.json();
 
-            setInfos(data);
+            setPersonagens(data);
             console.log(data);
 
         }
@@ -29,23 +29,27 @@ function Infos() {
     return (
         <>
 
-            {infos && (
+            {personagens && (
                 <>
-                    <div className="container">
-
-
+                <div>
                         <h1>Detalhes do Personagem</h1>
-                        
-                        {infos.results && infos.results.map((busca) => (
+                        <div className="container2">
                             <>
-                                <div className='times_e_Infos'>
-                                    <img src={busca.image && busca.image} />
-                                    <h3>{busca.name}</h3>
-                                </div>
+                                
+                                    <img className='imginfo' src={personagens.image && personagens.image} />
+                                    <div className='infos'>
+                                    <h3>Nome: {personagens.name}</h3>
+                                    <h3>Status: {personagens.status}</h3>
+                                    <h3>Espécie: {personagens.species}</h3>
+
+                                    <h1>Episódios</h1>
+                                    <h3>{personagens.episode}</h3>
+                                    </div>
 
 
                             </>
-                        ))}
+                        
+                    </div>
                     </div>
                 </>
 
