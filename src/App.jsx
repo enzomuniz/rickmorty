@@ -5,9 +5,15 @@ import './Infos.jsx'
 
 function App() {
 
-  const [personagens, setPersonagens] = useState();
+  const [personagens, setPersonagens] = useState([]);
+  const [procuranome, setProcuranome] = useState('');
+  const [buscarestado, setBuscarestado] = useState('');
 
+
+
+  
   useEffect(() => {
+    
 
     const fetchData = async () => {
       const response = await fetch(`https://rickandmortyapi.com/api/character`);
@@ -33,7 +39,8 @@ function App() {
                 <div>
                 
           <h1>Lista de Personagens</h1>
-          <input type="text" name="input" id="" /><button>Pesquisar</button> 
+          <input placeholder='Buscar' type="text" name="" id="" />
+          
 
           <select name="" id="">
             <option value="">Todos</option>

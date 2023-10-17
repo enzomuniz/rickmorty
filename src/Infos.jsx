@@ -6,6 +6,7 @@ import './App.css'
 function Infos() {
 
     const [personagens, setPersonagens] = useState();
+    const [episodios, setEpisodios] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
@@ -23,6 +24,34 @@ function Infos() {
 
     }, [])
 
+    const forLimit = async () => {
+
+        const allEpisodios = [];
+
+        for (let i = 0; i < personagens.episode.length; i++) {
+
+            const url = personagens.episode[i];
+            const epResponse = await fetch(url);
+            const epData = await epResponse.json();
+
+
+
+            allEpisodios.push(epData)
+
+
+        }
+
+        setEpisodios(allEpisodios);
+        console.log(allEpisodios);
+    }
+
+
+
+    useEffect(() => {
+        if (personagens) {
+            forLimit();
+        }
+    }, [personagens]);
 
 
 
@@ -35,18 +64,29 @@ function Infos() {
                         <h1>Detalhes do Personagem</h1>
                         <div className="container2">
                             <>
-                                
+                                <div className='card2'>
                                     <img className='imginfo' src={personagens.image && personagens.image} />
                                     <div className='infos'>
                                     <h3>Nome: {personagens.name}</h3>
                                     <h3>Status: {personagens.status}</h3>
                                     <h3>Espécie: {personagens.species}</h3>
-
-                                    <h1>Episódios</h1>
-                                    <h3>{personagens.episode}</h3>
+                                    </div>
+                                    <h2>Episódios:</h2>
+                                    <div>
+                                            {episodios && (
+                                             <>
+                                             {Object.values(episodios).map((busca) => (
+                                                 <>
+                                                     <div className='episodios'>
+                                                         <p className='texto'>Número: {busca.episode} Nome: {busca.name && busca.name}</p>
+                                                     </div>
+                                                 </>
+                                             ))}
+                                         </>
+                                     )}
                                     </div>
 
-
+                                    </div>
                             </>
                         
                     </div>

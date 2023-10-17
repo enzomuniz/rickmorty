@@ -26,14 +26,27 @@ a{
   border-radius: 150px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 .container2{
   display: flex;
-  justify-content: center;
   align-items: center;
-flex-direction: column;
+  justify-content:baseline;
 }
 .infos{
-  padding-right: 900px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.episodios{
+  border:1px solid black;
+  margin: 5px;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+.texto{
+  padding-left: 4px;
 }
